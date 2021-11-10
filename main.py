@@ -22,12 +22,12 @@ TESTGA_QATNASHISH = 10
 def start(update, context):
 	btns_admin = ReplyKeyboardMarkup(
 		[
-			['Test Yaratish'],['Natijalar'],['Testlarni boshqarish']
+			['📝 Test Yaratish'],['📈 Natijalar'],['✏️ Testlarni boshqarish']
 		], resize_keyboard=True)
 	btns_user = ReplyKeyboardMarkup(
 		[
-			['Natijalar'],
-			['Testga qatnashish']
+			['📈 Natijalar'],
+			['📋 Testga qatnashish']
 		], resize_keyboard=True)
 	global admin_1, admin_2, admin_3
 	admin_1 = "Abduqodir_GQ"
@@ -46,20 +46,20 @@ def start(update, context):
 
 def test_yaratish(update, context):
 
-	update.message.reply_html(f'Test yaratish uchun\n<b>Variant kodi</b>\n<b>To\'g\'ri javoblarni</b>\nquyidagi tartibda yuboring\nVariant kodi/To\'g\'ri javoblar\nGQQ/abcddcba...aaadd\nyoki\nGQQ/1a2b3c4d5d6c7b...')
+	update.message.reply_html(f'  Test yaratish uchun\n<b>🔢 Variant kodi</b>\n<b>🎯 To\'g\'ri javoblarni</b>\nquyidagi tartibda yuboring\n<b>Variant kodi/To\'g\'ri javoblar</b>\n\nGQQ/abcddcba...aaadd\n	yoki\nGQQ/1a2b3c4d5d6c7b...')
 	return QABUL_ADMIN
 
 def admin_natijalar(update, context):
 	nat_in_btn = [
 		[
-			InlineKeyboardButton('Ism familiya', callback_data='ism'),
-			InlineKeyboardButton('Variant', callback_data='variant'),
+			InlineKeyboardButton('🔸 Ism familiya', callback_data='ism'),
+			InlineKeyboardButton('🔹 Variant', callback_data='variant'),
 		],
 		[
-			InlineKeyboardButton('🔙Orqaga', callback_data='orqaga'),
+			InlineKeyboardButton('🔙 Orqaga', callback_data='orqaga'),
 		]
 	]
-	update.message.reply_html(f'Natijalarni qaysi shaklda ko\'rmoqchisiz', reply_markup=InlineKeyboardMarkup(nat_in_btn))
+	update.message.reply_html(f'Natijalarni qaysi shaklda ko\'rmoqchisiz ⁉️. Quyidagi tugmalardan tanlang 👇', reply_markup=InlineKeyboardMarkup(nat_in_btn))
 	return VIEW_NAT
 
 
@@ -75,7 +75,7 @@ def qabul_admin(update, context):
 			if arr[1][0]!='1':
 				for item in arr[1]:
 					i+=1
-					s += f"<b>{i}.</b> {item}\n"
+					s += f"<b>{i}. </b> {item}\n"
 					m_base += item
 				test_base.test_ochish(arr[0], m_base)
 			elif len(arr[1])<=18:
@@ -83,7 +83,7 @@ def qabul_admin(update, context):
 					t = 0
 					while i<len(arr[1])/2:
 						i+=1
-						s += f"<b>{i}.</b> {arr[1][t]}\n"
+						s += f"<b>{i}. </b> {arr[1][t]}\n"
 						m_base += arr[1][t]
 						t+=2
 					test_base.test_ochish(arr[0], m_base)
@@ -94,7 +94,7 @@ def qabul_admin(update, context):
 				t = 1
 				while i<9:
 					i+=1
-					s += f"<b>{i}.</b> {arr[1][t]}\n"
+					s += f"<b>{i}.   </b> {arr[1][t]}\n"
 					m_base += arr[1][t]
 					t+=2
 				l = 0
@@ -102,27 +102,21 @@ def qabul_admin(update, context):
 				while l<(len(arr[1])-18)/3:
 					i+=1
 					l+=1
-					s += f"<b>{i}.</b> {arr[1][t]}\n"
+					s += f"<b>{i}.  </b> {arr[1][t]}\n"
 					m_base += arr[1][t]
 					t+=3
 				test_base.test_ochish(arr[0], m_base)
-		
 			else:
-				print((len(arr[1])-18)%3)
-				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
+				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️ yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
 				return QABUL_ADMIN
 				
-			update.message.reply_html(f'Variant - <b>{arr[0]}</b>\n{s}\n\ntest yaratildi. Testni boshlash uchun " Testlarni boshqarish" ni bosing')
-			
-			
+			update.message.reply_html(f'Variant - <b>{arr[0]}</b>\n{s}\n\nTest yaratildi 👌. Testni boshlash uchun \n<b>"✏️ Testlarni boshqarish"</b> ni bosing')
 			return ADMIN
 		else:
-			update.message.reply_html(f'Siz yaratgan variant kodi oldindan mavjud. Iltimos Variant boshqacha kodlab keyin jo\'nating !')
+			update.message.reply_html(f'Siz yaratgan <b>Variant kodi</b> oldindan mavjud. Iltimos Variantni boshqacha kodlab keyin jo\'nating 📲')
 			return QABUL_ADMIN
-		
-
 	else:
-		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
+		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️')
 		return QABUL_ADMIN
 def test_edit(update, context):
 	edit_btn = [
@@ -132,7 +126,7 @@ def test_edit(update, context):
 		],
 		[InlineKeyboardButton('🔙 Orqaga', callback_data='orqaga'),]
 	]
-	update.message.reply_html(f'Testlarni nazorat qilish uchun quyidagi tugmalardan tanlang', reply_markup=InlineKeyboardMarkup(edit_btn))
+	update.message.reply_html(f'Testlarni nazorat qilish uchun quyidagi tugmalardan tanlang 👇', reply_markup=InlineKeyboardMarkup(edit_btn))
 	return EDIT
 
 def edit(update, context):
@@ -141,19 +135,19 @@ def edit(update, context):
 	query.message.delete()
 	
 	if txt == 'orqaga':
-		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang")
+		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang 👇")
 		return ADMIN
 	elif txt == 'ochish':
-		query.message.reply_html(f"Ochmoqchi bo'lgan testingiz varianti kodini yuboring")
+		query.message.reply_html(f"Ochmoqchi bo'lgan testingiz varianti kodini yuboring 📲")
 		return OCHISH
 	else:
-		query.message.reply_html(f"Yopmoqchi bo'lgan testingiz varianti kodini yuboring")
+		query.message.reply_html(f"Yopmoqchi bo'lgan testingiz varianti kodini yuboring 📲")
 		return EDITED
 def edited(update, context):
 	txt = update.message.text
 	m = test_base.test_holati(txt)
 	if m=='yopiq':
-		update.message.reply_html(f'{txt} - variantli test yopiq')
+		update.message.reply_html(f'{txt} - variantli test yopiq 🚫')
 	else:
 		t = test_base.test_yopish(txt)
 		update.message.reply_html(t)
@@ -162,7 +156,7 @@ def ochish(update, context):
 	txt = update.message.text
 	m = test_base.test_holati(txt)
 	if m=='ochiq':
-		update.message.reply_html(f'{txt} - variantli test ochiq')
+		update.message.reply_html(f'{txt} - variantli test ochiq ☑️')
 	else:
 		t = test_base.test_yopish(txt)
 		update.message.reply_html(t)
@@ -172,15 +166,15 @@ def ochish(update, context):
 def view_nat(update, context):
 	query = update.callback_query
 	txt = query.data
-	query.message.delete()
+	
 	if txt=='ism':
-		query.message.reply_html(f"Natijasini bilmoqchi bo'lgan <b>Ism Familiya</b>ni kiriting")
+		query.message.reply_html(f"Natijasini bilmoqchi bo'lgan <b>Ism Familiya</b>ni yuboring 📲")
 		return VIEW_ISM
 	elif txt=='variant':
-		query.message.reply_html(f"Natijasini bilmoqchi bo'lgan <b>Variant Kodi</b>ni kiriting")
+		query.message.reply_html(f"Natijasini bilmoqchi bo'lgan <b>Variant Kodi</b>ni yuboring 📲")
 		return VIEW_VARIANT
 	else:
-		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang")
+		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang 👇")
 		t = update.effective_user.username
 		if u==admin_1 or u==admin_2 or u==admin_3:
 			return ADMIN
@@ -190,14 +184,14 @@ def view_nat(update, context):
 def view_ism(update, context):
 	txt = update.message.text
 	t = base.ism_view(txt)
-	info = f"<b>{txt}</b> natijalari\n<b>№</b>\t |  <b>Variant</b>  \t|<b>To\'g\'ri javob</b>\t| <b>Sana</b>\n"
+	info = f"<b>{txt}</b> natijalari\n<b>№</b>\t |  <b>Variant</b>  \t|<b> To\'g\'ri javob</b>\t| <b>Sana</b>\n"
 	if len(t)>0:
 		i=0
 		for item in t:
 			i+=1
 			info += f"{i}.\t {item[1]} \t|  {item[2]} ta  \t|  {item[4]}\n"
 	else:
-		info = f"Kechirasiz {txt} ga oid ma\'lumot topilmadi"
+		info = f"Kechirasiz <b>{txt}</b> - variantiga oid ma\'lumot topilmadi 🤷🏻‍♂️"
 	update.message.reply_html(info)
 	if u==admin_1 or u==admin_2 or u==admin_3:
 		return ADMIN
@@ -215,7 +209,7 @@ def view_variant(update, context):
 			i+=1
 			info += f"{i}.\t {item[0]} \t|  {item[2]} ta  \t|  {item[4]}\n"
 	else:
-		info = f"Kechirasiz {txt} ga oid ma\'lumot topilmadi"
+		info = f"Kechirasiz <b>{txt}</b> - variantiga oid ma\'lumot topilmadi 🤷🏻‍♂️"
 	update.message.reply_html(info)
 	if u==admin_1 or u==admin_2 or u==admin_3:
 		return ADMIN
@@ -235,23 +229,22 @@ def testga_qatnashish(update, context):
 		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
 		return TESTGA_QATNASHISH
 	if test_base.var_tek(arr[0]):
-		update.message.reply_html(f' <b>{arr[0]}</b> - varianti bo\'yicha ma\'lumot topilmadi. Iltimos variantni tekshiring')
+		update.message.reply_html(f' <b>{arr[0]}</b> - varianti bo\'yicha ma\'lumot topilmadi 🤷🏻‍♂️. Iltimos variantni tekshiring 🔍')
 		return USER
 
 	if test_base.test_holati_user(arr[0]):
-		update.message.reply_html(f' <b>{arr[0]}</b> - varianti bo\'yicha testga qatnashishga ruxsat yo\'q')
+		update.message.reply_html(f'🚷 <b>{arr[0]}</b> - varianti bo\'yicha testga qatnashishga ruxsat yo\'q')
 		return USER
 
 
 	if base.ismni_tek(arr[2], arr[0]):
-		update.message.reply_html(f"Siz bu testga oldin qatnashgansiz. Har bir variant bo\'yicha bir marta qatnashish mumkin.")
+		update.message.reply_html(f"Siz bu testga oldin qatnashgansiz 🧐. Har bir variant bo\'yicha bir marta qatnashish mumkin 👮🏿‍♀️.")
 		return USER
 
 	if type(x)==tuple:
 		m_base = ''
 		i = 0
 		if True:
-			print(test_base.variant_conf(arr[0]))
 			if (test_base.variant_conf(arr[0])):
 				
 				if arr[1][0]!='1':
@@ -283,7 +276,7 @@ def testga_qatnashish(update, context):
 						t+=3
 			
 			else:
-				update.message.reply_html(f'Siz kiritgan variant kodi mavjud emas. Iltimos Variant kodi tekshirib keyin jo\'nating !')
+				update.message.reply_html(f'Siz kiritgan <b>{arr[0]}</b> - Variant kodi mavjud emas. Iltimos Variant kodini tekshirib keyin jo\'nating 📲')
 				return TESTGA_QATNASHISH
 
 			if len(m_base)==len(x[1]):
@@ -308,7 +301,7 @@ def testga_qatnashish(update, context):
 				sana = test_base.vaqt
 				q = (f"{arr[2]}", f"{arr[0]}", f"{t_j}", f"{foiz}", f"{sana}")
 				base.qaydnoma(q)
-				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: {foiz} %\n\nUmumiy natijalarni ko\rish uchun "Natijalar"ga murojaat qiling')
+				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: {foiz} %\n\nUmumiy natijalarni ko\rish uchun "📈 Natijalar"ga murojaat qiling')
 			else:
 				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
 				return TESTGA_QATNASHISH
@@ -330,13 +323,13 @@ def main():
 
 		states = {
 			ADMIN: [
-				MessageHandler(Filters.regex('^Test Yaratish$'), test_yaratish ),
-				MessageHandler(Filters.regex('^Natijalar$'), admin_natijalar ),
-				MessageHandler(Filters.regex('^Testlarni boshqarish$'), test_edit ),
+				MessageHandler(Filters.regex('^📝 Test Yaratish$'), test_yaratish ),
+				MessageHandler(Filters.regex('^📈 Natijalar$'), admin_natijalar ),
+				MessageHandler(Filters.regex('^✏️ Testlarni boshqarish$'), test_edit ),
 			],
 			USER: [
-				MessageHandler(Filters.regex('^Natijalar$'), admin_natijalar),
-				MessageHandler(Filters.regex('^Testga qatnashish$'), user_test),
+				MessageHandler(Filters.regex('^📈 Natijalar$'), admin_natijalar),
+				MessageHandler(Filters.regex('^📋 Testga qatnashish$'), user_test),
 			],
 			QABUL_ADMIN: [
 				MessageHandler(Filters.text, qabul_admin)

@@ -1,11 +1,5 @@
 import sqlite3
 
-# Bu yerda connect bilan bazamizni ushlab olamiz
-con = sqlite3.connect('customer.db')
-
-#cursor conn ni ichini ochib beradi
-c = con.cursor()
-
 # c.execute("""CREATE TABLE customer (
 #     fio text,
 #     variant text,
@@ -21,15 +15,6 @@ def qaydnoma(txt):
     c.execute(" INSERT INTO customer VALUES(?, ?, ?, ?, ?)", txt)
     con.commit()
     con.close()
-
-# qaydnoma(t)
-
-# def name(txt):
-#     con = sqlite3.connect('customer.db')
-#     c = con.cursor()
-
-#     con.commit()
-#     con.close()
 
 def ism_view(txt):
     con = sqlite3.connect('customer.db')
@@ -64,16 +49,3 @@ def ismni_tek(txt, txt_v):
     con.commit()
     con.close()
     return False
-
-
-# c.execute("SELECT*FROM customer")
-# print(c.fetchall())
-
-
-
-
-# Bazani ishlatish uchun buyruq
-con.commit()
-
-# Bazani yopish uchun buyruq
-con.close()
