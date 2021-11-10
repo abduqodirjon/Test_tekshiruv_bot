@@ -3,7 +3,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext, CallbackQuery
 import test_base
 import base
 
-API_TOKEN = '2140701433:AAHOLhTkb0ffH8olHpwIHVU0YUQFWmED8nc'
+API_TOKEN = '2141889461:AAGL24hu7dglmh-5gGxAboh8_-mqRH-VB0E'
 global OCHQ_TESTLAR
 
 
@@ -69,7 +69,7 @@ def qabul_admin(update, context):
 	txt = update.message.text
 	arr = list(map(str, txt.split('/')))
 	if len(arr)==2:
-		if test_base.variant_conf(arr[0]):
+		if test_base.variant_conf_admin(arr[0]):
 			s = ""
 			m_base = ''
 			i = 0
@@ -185,12 +185,12 @@ def view_nat(update, context):
 def view_ism(update, context):
 	txt = update.message.text
 	t = base.ism_view(txt)
-	info = f"<b>{txt}</b> natijalari\n<b>№</b>\t |  <b>Variant</b>  \t|<b> To\'g\'ri javob</b>\t| <b>Sana</b>\n"
+	info = f"<b>{txt}</b> natijalari\n<b>№</b>\t |  <b>Variant</b>  \t|<b> To\'g\'ri javob</b>\t| <b>Ko'rsatkich</b> | <b>Sana</b>\n"
 	if len(t)>0:
 		i=0
 		for item in t:
 			i+=1
-			info += f"{i}.\t {item[1]} \t|  {item[2]} ta  \t|  {item[4]}\n"
+			info += f"{i}.\t {item[1]} \t| {item[2]} ta \t| {item[3]} %| {item[4]}\n"
 	else:
 		info = f"Kechirasiz <b>{txt}</b>  ismga oid ma\'lumot topilmadi 🤷🏻‍♂️"
 	update.message.reply_html(info)
@@ -203,12 +203,12 @@ def view_ism(update, context):
 def view_variant(update, context):
 	txt = update.message.text	
 	t = base.variant_view(txt) 
-	info = f"Variant - <b>{txt}</b> natijalari\n<b>№</b>\t |  <b>F.I.O</b>     \t|<b>To\'g\'ri javob</b>\t| <b>Sana</b>\n"
+	info = f"Variant - <b>{txt}</b> natijalari\n<b>№</b>\t |  <b>F.I.O</b>     \t|<b>To\'g\'ri javob</b>\t| <b>Ko'rsatkich</b> | <b>Sana</b>\n"
 	if len(t)>0:
 		i=0
 		for item in t:
 			i+=1
-			info += f"{i}.\t {item[0]} \t|  {item[2]} ta  \t|  {item[4]}\n"
+			info += f"{i}.\t {item[0]} \t|  {item[2]} ta  \t|  {item[3]} %| {item[4]}\n"
 	else:
 		info = f"Kechirasiz <b>{txt}</b> - variantiga oid ma\'lumot topilmadi 🤷🏻‍♂️"
 	update.message.reply_html(info)
@@ -301,7 +301,7 @@ def testga_qatnashish(update, context):
 				sana = test_base.vaqt
 				q = (f"{arr[2]}", f"{arr[0]}", f"{t_j}", f"{foiz}", f"{sana}")
 				base.qaydnoma(q)
-				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: <b>{foiz} %</b>\n\nUmumiy natijalarni ko\rish uchun <b>"📈 Natijalar"</b>ga murojaat qiling')
+				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: <b>{foiz} %</b>\n\nUmumiy natijalarni ko\'rish uchun <b>"📈 Natijalar"</b>ga murojaat qiling')
 			else:
 				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
 			return USER

@@ -54,6 +54,18 @@ def test_yopish(txt):
     con.commit()
     con.close()
     return info
+def variant_conf_admin(txt):
+    con = sqlite3.connect("testlar.db")
+    c = con.cursor()
+    c.execute(f'SELECT*FROM testlar WHERE variant = "{txt}"')
+    t = c.fetchall()
+    if len(t)==0:
+        info = True
+    else:
+        info = False
+    con.commit()
+    con.close()
+    return info
 
 def variant_conf(txt):
     con = sqlite3.connect("testlar.db")
