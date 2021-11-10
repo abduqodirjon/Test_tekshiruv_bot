@@ -17,6 +17,7 @@ VIEW_NAT = 7
 VIEW_ISM = 8
 VIEW_VARIANT = 9
 TESTGA_QATNASHISH = 10
+EXIT = 11
 
 
 def start(update, context):
@@ -88,8 +89,8 @@ def qabul_admin(update, context):
 						t+=2
 					test_base.test_ochish(arr[0], m_base)
 				else:
-					update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
-					return QABUL_ADMIN
+					update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+					return ADMIN
 			elif (len(arr[1])-18)%3==0:
 				t = 1
 				while i<9:
@@ -107,17 +108,17 @@ def qabul_admin(update, context):
 					t+=3
 				test_base.test_ochish(arr[0], m_base)
 			else:
-				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️ yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
-				return QABUL_ADMIN
+				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️ yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+				return ADMIN
 				
 			update.message.reply_html(f'Variant - <b>{arr[0]}</b>\n{s}\n\nTest yaratildi 👌. Testni boshlash uchun \n<b>"✏️ Testlarni boshqarish"</b> ni bosing')
 			return ADMIN
 		else:
 			update.message.reply_html(f'Siz yaratgan <b>Variant kodi</b> oldindan mavjud. Iltimos Variantni boshqacha kodlab keyin jo\'nating 📲')
-			return QABUL_ADMIN
+			return ADMIN
 	else:
-		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️')
-		return QABUL_ADMIN
+		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting ⌨️\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+		return ADMIN
 def test_edit(update, context):
 	edit_btn = [
 		[
@@ -135,7 +136,7 @@ def edit(update, context):
 	query.message.delete()
 	
 	if txt == 'orqaga':
-		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang 👇")
+		query.message.reply_html(f"<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>")
 		return ADMIN
 	elif txt == 'ochish':
 		query.message.reply_html(f"Ochmoqchi bo'lgan testingiz varianti kodini yuboring 📲")
@@ -174,7 +175,7 @@ def view_nat(update, context):
 		query.message.reply_html(f"Natijasini bilmoqchi bo'lgan <b>Variant Kodi</b>ni yuboring 📲")
 		return VIEW_VARIANT
 	else:
-		query.message.reply_html(f"Nima qilishni quyidagi tugmalardan tanlang 👇")
+		query.message.reply_html(f"<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>")
 		t = update.effective_user.username
 		if u==admin_1 or u==admin_2 or u==admin_3:
 			return ADMIN
@@ -191,7 +192,7 @@ def view_ism(update, context):
 			i+=1
 			info += f"{i}.\t {item[1]} \t|  {item[2]} ta  \t|  {item[4]}\n"
 	else:
-		info = f"Kechirasiz <b>{txt}</b> - variantiga oid ma\'lumot topilmadi 🤷🏻‍♂️"
+		info = f"Kechirasiz <b>{txt}</b>  ismga oid ma\'lumot topilmadi 🤷🏻‍♂️"
 	update.message.reply_html(info)
 	if u==admin_1 or u==admin_2 or u==admin_3:
 		return ADMIN
@@ -226,8 +227,8 @@ def testga_qatnashish(update, context):
 	arr = list(map(str, txt.split('/')))
 	x = test_base.test_topshirish(arr[0])
 	if len(arr)!=3:
-		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
-		return TESTGA_QATNASHISH
+		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+		return USER
 	if test_base.var_tek(arr[0]):
 		update.message.reply_html(f' <b>{arr[0]}</b> - varianti bo\'yicha ma\'lumot topilmadi 🤷🏻‍♂️. Iltimos variantni tekshiring 🔍')
 		return USER
@@ -259,8 +260,8 @@ def testga_qatnashish(update, context):
 							m_base += arr[1][t]
 							t+=2
 					else:
-						update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
-						return TESTGA_QATNASHISH
+						update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+						return USER
 				elif (len(arr[1])-18)%3==0:
 					t = 1
 					while i<9:
@@ -276,9 +277,8 @@ def testga_qatnashish(update, context):
 						t+=3
 			
 			else:
-				update.message.reply_html(f'Siz kiritgan <b>{arr[0]}</b> - Variant kodi mavjud emas. Iltimos Variant kodini tekshirib keyin jo\'nating 📲')
-				return TESTGA_QATNASHISH
-
+				update.message.reply_html(f'Siz kiritgan <b>{arr[0]}</b> - Variant kodi mavjud emas. Iltimos Variant kodini tekshirib keyin jo\'nating 📲\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
+				return USER
 			if len(m_base)==len(x[1]):
 				c = 0
 				t_j=0
@@ -301,14 +301,12 @@ def testga_qatnashish(update, context):
 				sana = test_base.vaqt
 				q = (f"{arr[2]}", f"{arr[0]}", f"{t_j}", f"{foiz}", f"{sana}")
 				base.qaydnoma(q)
-				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: {foiz} %\n\nUmumiy natijalarni ko\rish uchun "📈 Natijalar"ga murojaat qiling')
+				update.message.reply_html(f'<i>Tabriklaymiz</i> <b>{arr[2]}</b>\nSiz ushbu testda quyidagi natijani qayd etdingiz\n🎯 To\'g\'ri javoblar:  <b>{t_j}</b> ta\nXatolar:\n{xato}\nFoiz ko\'rsatkichi: <b>{foiz} %</b>\n\nUmumiy natijalarni ko\rish uchun <b>"📈 Natijalar"</b>ga murojaat qiling')
 			else:
-				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
-				return TESTGA_QATNASHISH
+				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
 			return USER
 	else:
-		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
-		return TESTGA_QATNASHISH
+		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆\n<i>Nima qilishni quyidagi tugmalardan tanlang 👇</i>')
 	return USER
 	
 				
@@ -341,6 +339,7 @@ def main():
 			VIEW_ISM: [MessageHandler(Filters.text, view_ism)],
 			VIEW_VARIANT: [MessageHandler(Filters.text, view_variant)],       
 			TESTGA_QATNASHISH: [MessageHandler(Filters.text, testga_qatnashish)],
+			EXIT: [CommandHandler('exit', start)],
 
 		},
 		fallbacks = [CommandHandler('help', help)]

@@ -61,9 +61,9 @@ def variant_conf(txt):
     c.execute(f'SELECT*FROM testlar WHERE variant = "{txt}"')
     t = c.fetchall()
     if len(t)==0:
-        info = True
-    else:
         info = False
+    else:
+        info = True
     con.commit()
     con.close()
     return info
