@@ -61,16 +61,14 @@ def test_yopish(txt):
 def variant_conf(txt):
     con = sqlite3.connect("testlar.db")
     c = con.cursor()
-    info = True
+    info = False
     c.execute(f'SELECT*FROM testlar WHERE variant = "{txt}"')
     t = c.fetchall()
     if len(t)!=0:
-        info = False
-    
+        info = True
     con.commit()
     con.close()
     return info
-
 def test_topshirish(txt):
     con = sqlite3.connect("testlar.db")
     c = con.cursor()

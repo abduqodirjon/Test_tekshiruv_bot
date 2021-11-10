@@ -231,7 +231,9 @@ def testga_qatnashish(update, context):
 	txt = update.message.text
 	arr = list(map(str, txt.split('/')))
 	x = test_base.test_topshirish(arr[0])
-
+	if len(arr)!=3:
+		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
+		return TESTGA_QATNASHISH
 	if test_base.var_tek(arr[0]):
 		update.message.reply_html(f' <b>{arr[0]}</b> - varianti bo\'yicha ma\'lumot topilmadi. Iltimos variantni tekshiring')
 		return USER
@@ -248,8 +250,9 @@ def testga_qatnashish(update, context):
 	if type(x)==tuple:
 		m_base = ''
 		i = 0
-		if len(arr)==3:
-			if (test_base.variant_conf(arr[0])) == False:
+		if True:
+			print(test_base.variant_conf(arr[0]))
+			if (test_base.variant_conf(arr[0])):
 				
 				if arr[1][0]!='1':
 					for item in arr[1]:
@@ -279,11 +282,9 @@ def testga_qatnashish(update, context):
 						m_base += arr[1][t]
 						t+=3
 			
-				else:
-					update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
-					return TESTGA_QATNASHISH
 			else:
-				update.message.reply_html(f"Bunday variant topilmadi")
+				update.message.reply_html(f'Siz kiritgan variant kodi mavjud emas. Iltimos Variant kodi tekshirib keyin jo\'nating !')
+				return TESTGA_QATNASHISH
 
 			if len(m_base)==len(x[1]):
 				c = 0
@@ -312,9 +313,6 @@ def testga_qatnashish(update, context):
 				update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting yoki kiritilgan ma\'lumotni tekshirib ko\'ring 👆')
 				return TESTGA_QATNASHISH
 			return USER
-		else:
-			update.message.reply_html(f'Siz kiritgan variant kodi mavjud emas. Iltimos Variant kodi tekshirib keyin jo\'nating !')
-			return TESTGA_QATNASHISH
 	else:
 		update.message.reply_html(f'Ma\'lumotlarni ko\'rsatilgan tartibda kiriting 👆')
 		return TESTGA_QATNASHISH

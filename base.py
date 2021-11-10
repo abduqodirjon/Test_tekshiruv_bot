@@ -22,9 +22,6 @@ def qaydnoma(txt):
     con.commit()
     con.close()
 
-
-a = ['Tangem', 'TTT-257', 30, 3, '2021-11-06'] 
-t = (a[0],a[1],a[2],a[3],a[4])
 # qaydnoma(t)
 
 # def name(txt):
@@ -57,7 +54,6 @@ def ismni_tek(txt, txt_v):
     c = con.cursor()
     c.execute(f'SELECT*FROM customer WHERE fio = "{txt}" ORDER BY variant DESC')
     t = c.fetchall()
-    print(t)
     if len(t)==0:
         return False
     else:
