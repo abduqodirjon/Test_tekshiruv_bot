@@ -3,7 +3,7 @@ from telegram.ext import Updater, CommandHandler, CallbackContext, CallbackQuery
 import test_base
 import base
 
-API_TOKEN = '2141889461:AAGL24hu7dglmh-5gGxAboh8_-mqRH-VB0E'
+API_TOKEN = '2141889461:AAHFiC5nFTSE4xIcP27dAjRdbE_D4UNcpBE'
 global OCHQ_TESTLAR
 
 
